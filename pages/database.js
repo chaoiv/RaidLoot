@@ -131,6 +131,19 @@ export class Database {
     },
   ];
 
+  slotNames = {
+    head: "Helm",
+    body: "Chest",
+    hands: "Hands",
+    legs: "Legs",
+    feet: "Feet",
+    necklace: "Necklace",
+    earrings: "Earrings",
+    bracelet: "Bracelet",
+    ring1: "Ring",
+    ring2: "Ring"
+  };
+
   roles = [
     {
       name: 'Tank',
@@ -337,6 +350,22 @@ export class Database {
     return this.gamers[gamer];
   }
 
+  getGamerJob(gamer) {
+    return this.gamers[gamer].job;
+  }
+
+  getGamerGear(gamer) {
+    return this.gamers[gamer].gear;
+  }
+
+  getGamerGearSlot(gamer, slot) {
+    return this.gamers[gamer].gear[slot];
+  }
+
+  getGamerGearArray(gamer) {
+    return Object.keys(this.getGamerGear(gamer));
+  }
+
   setGamer(gamer, data) {
     this.gamers[gamer] = data;
   }
@@ -361,8 +390,25 @@ export class Database {
     return this.jobs[job];
   }
 
+  getJobGearset(job) {
+    return this.jobs[job].gear;
+  }
+
   getGear() {
     return this.gear();
+  }
+
+  getGearSlotName(slot) {
+    return this.slotNames[slot];
+  }
+
+  getGearSlotPieces(gearset, raid, slot) {
+    return this.gear[gearset][raid][slot];
+  }
+
+  getGearPiece(item) {
+    // TODO: Fetch from API
+    return item;
   }
 }
 
